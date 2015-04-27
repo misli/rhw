@@ -1,0 +1,35 @@
+<div class="box idea-preview">
+    <h3>
+        {% if redhackweek and redhackweek.status == redhackweek.STATUS_PROJECTS and request.user.is_superuser %}
+        <a href="{% url 'rhw-select' redhackweek.slug idea.slug %}"><i class="glyphicon glyphicon-plus"></i></a>
+        {% endif %}
+        <a href="{{ idea.get_absolute_url }}">{{ idea.title }}</a>
+    </h3>
+    <ul class="properties idea-properties">
+        <li>
+            Authors:
+            {% for author in idea.authors.all %}
+                {{ author.get_username }}{% if not forloop.last %},{% endif %}
+            {% endfor %}
+        </li>
+        <li>
+            Interested hackers ({{ idea.interested.count }}):
+            {% for interested in idea.interested.all %}
+                {{ interested.get_username }}{% if not forloop.last %},{% endif %}
+            {% endfor %}
+            {% if request.user in idea.interested.all %}
+                <a href="{% url 'interested' slug=idea.slug op='-' %}?back={{ request.path }}" title="remove from the list"><i class="glyphicon glyphicon-minus"></i></a>
+            {% else %}
+                <a href="{% url 'interested' slug=idea.slug op='+' %}?back={{ request.path }}" title="add me to the list"><i class="glyphicon glyphicon-plus"></i></a>
+            {% endif %}
+        </li>
+        {% if not redhackweek and idea.redhackweeks.count %}
+        <li>
+            Nominated in
+            {% for rhw in idea.redhackweeks.all %}
+                <a href="{{ rhw.get_absolute_url }}">{{ rhw.title }}</a>{% if not forloop.last %},{% endif %}
+            {% endfor %}
+        </li>
+        {% endif %}
+    </ul>
+</div>

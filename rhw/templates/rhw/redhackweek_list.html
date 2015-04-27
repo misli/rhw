@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}Red Hack Weeks{% endblock %}
+
+{% block content %}
+
+<h1>
+    Red Hack Weeks
+    {% if request.user.is_superuser %}
+    <a href="{% url 'rhw-create' %}"><i class="glyphicon glyphicon-plus"></i></a>
+    {% endif %}
+</h1>
+
+{% for redhackweek in object_list %}
+    {% include 'rhw/redhackweek_preview.html' %}
+{% endfor %}
+
+{% endblock %}

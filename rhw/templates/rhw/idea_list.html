@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block title %}Unrealized Ideas{% endblock %}
+
+{% block content %}
+
+<h1>
+    Project Ideas
+    <a href="{% url 'idea-create' %}" title="add"><i class="glyphicon glyphicon-plus"></i></a>
+</h1>
+
+{% for idea in object_list %}
+    {% include 'rhw/idea_preview.html' %}
+{% endfor %}
+
+{% endblock %}

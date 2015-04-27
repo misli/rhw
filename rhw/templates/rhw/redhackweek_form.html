@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block title %}{% if redhackweek %}Edit red hack week {{ redhackweek.title }}{% else %}Create red hack week{% endif %}{% endblock %}
+
+{% block content %}
+
+<h1>{% if redhackweek %}Edit red hack week {{ redhackweek.title }}{% else %}Create red hack week{% endif %}</h1>
+
+{% for error in form.non_field_errors %}
+    <div class='alert alert-danger'>{{ error }}</div>
+{% endfor %}
+
+<form method="post" class="form-horizontal">{% csrf_token %}
+    {{ form.media }}
+    {% for item in form %}
+    <div class='form-group'>
+        <label for="{{ item.id_for_label }}" class="control-label col-md-2">{{ item.label }}:</label>
+        <div class="col-md-6{% if item.errors %} alert alert-danger{% endif %}">
+            {% for error in item.errors %}
+                <div>{{ error }}</div>
+            {% endfor %}
+            {{ item }}
+            {% if item.help_text %}
+                <span class='help-block'>{{ item.help_text }}</span>
+            {% endif %}
+        </div>
+    </div>
+    {% endfor %}
+    <div class='form-group'>
+        <div class='col-md-10 col-md-offset-2'>
+            <input class="btn btn-primary" type="submit" value="Save" />
+        </div>
+    </div>
+    {% if not redhackweek %}{% include 'prepopulated_fields_js.html' %}{% endif %}
+</form>
+
+{% endblock %}

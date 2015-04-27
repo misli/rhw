@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}Project: {{ project.title }}{% endblock %}
+
+{% block content %}
+
+<h1>
+    {% if request.user in project.members.all or request.user.is_superuser %}
+    <a href="{% url 'project-edit' project.slug %}" title="edit"><i class="glyphicon glyphicon-edit"></i></a>
+    {% endif %}
+    {{ project.title }}
+</h1>
+
+<ul class="project-properties">
+    <li>
+        Idea:
+        <a href="{{ project.idea.get_absolute_url }}">{{ project.idea.title }}</a>
+    </li>
+    <li>
+        Implemented in:
+        <a href="{{ project.rhw.get_absolute_url }}">{{ project.rhw.title }}</a>
+    </li>
+    <li>
+        Team member{% if project.members.count > 1 %}s{% endif %}:
+        {% for member in project.members.all %}
+            {{ member.get_username }}{% if not forloop.last %},{% endif %}
+        {% endfor %}
+        {% if project.rhw.status <= project.rhw.STATUS_HACKING %}
+        {% if request.user in project.members.all %}
+        <a href="{% url 'member_vote' slug=project.slug op='-' %}?back={{ request.path }}" title="remove from the list"><i class="glyphicon glyphicon-minus"></i></a>
+        {% else %}
+        <a href="{% url 'member_vote' slug=project.slug op='+' %}?back={{ request.path }}" title="add me to the list"><i class="glyphicon glyphicon-plus"></i></a>
+        {% endif %}
+        {% endif %}
+    </li>
+    {% if project.rhw.status >= project.rhw.STATUS_VOTING %}
+    <li>
+        Votes ({{ project.votes.count }}):
+        {% for vote in project.votes.all %}
+            {{ vote.get_username }}{% if not forloop.last %},{% endif %}
+        {% endfor %}
+        {% if project.rhw.status == project.rhw.STATUS_VOTING and request.user not in project.members.all %}
+        {% if request.user in project.votes.all %}
+        <a href="{% url 'member_vote' slug=project.slug op='-' %}?back={{ request.path }}" title="remove from the list"><i class="glyphicon glyphicon-minus"></i></a>
+        {% else %}
+        <a href="{% url 'member_vote' slug=project.slug op='+' %}?back={{ request.path }}" title="add me to the list"><i class="glyphicon glyphicon-plus"></i></a>
+        {% endif %}
+        {% endif %}
+    </li>
+    {% endif %}
+</ul>
+
+{{ project.text|safe }}
+
+{% endblock %}

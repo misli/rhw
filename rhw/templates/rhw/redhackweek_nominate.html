@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Nominate idea for {{ redhackweek.title }}{% endblock %}
+
+{% block content %}
+
+<h1>
+    Nominate project idea for {{ redhackweek.title }}
+</h1>
+
+{% for error in form.non_field_errors %}
+    <div class='alert alert-danger'>{{ error }}</div>
+{% endfor %}
+
+<form method="post" class="form-horizontal">{% csrf_token %}
+    <div class='form-group'>
+        <label for="{{ form.idea.id_for_label }}" class="control-label col-md-2">Select existing idea:</label>
+        <div class="col-md-6{% if form.idea.errors %} alert alert-danger{% endif %}">
+            {% for error in form.idea.errors %}
+                <div>{{ error }}</div>
+            {% endfor %}
+            {{ form.idea }}
+        </div>
+        <div class='col-md-2'>
+            <input class="btn btn-primary" type="submit" value="Nominate" />
+        </div>
+    </div>
+    <div class='form-group'>
+        <label for="id_new" class="control-label col-md-2">or write a new one:</label>
+        <div class="col-md-6">
+            <a class="btn btn-primary" href="{% url 'rhw-nominate-new' redhackweek.slug %}">
+                Add
+            </a>
+        </div>
+    </div>
+</form>
+
+{% endblock %}

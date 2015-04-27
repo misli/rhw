@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}About Red Hack Week{% endblock %}
+
+{% block content %}
+
+<h1>Current Red Hack Week</h1>
+{% include 'rhw/redhackweek_preview.html' with redhackweek=latest_rhw %}
+
+<h1>About Red Hack Week</h1>
+
+<p>Project Red Hack Week (RHW) is the week where Red Hat engineers can experiment without limits. This is the opportunity to innovate, collaborate across teams, and learn. Associates are encouraged to come up with ideas to improve their favorite upstream projects, implement missing functionality, or just experiment with new ideas.</p>
+
+<p>Participation in the implementation phase is voluntary but encouraged.</p>
+
+<p>Enter your ideas in Project Ideas 2015 page and update the information there while working on the project – so that others can follow and join. Browse the list of ideas and get inspired. Find like-minded developers and team up with them to multiply your hacking power. Please also add ideas if you don't know or plan to work on it when you think it would be great if somebody else picked it up.</p>
+
+<h2>What</h2>
+
+<p>A RHW project is loosely defined by the following criteria:</p>
+
+<ul>
+    <li>must be licensed or published under an OSS license (http://fedoraproject.org/wiki/Licensing)</li>
+    <li>the source code must be freely accessible to all the possible collaborators</li>
+    <li>should be a positive contribution for Fedora/Red Hat</li>
+</ul>
+
+<p>The project leader or at least one of its members should periodically update the project's status. Writing blogs, taking photos or even videos raises the chances for winning a prize/award :)</p>
+
+<h2>When</h2>
+
+<p>RHW is planned to happen yearly and spans for a whole work week (5 working days). Rest of the year is spent on gathering ideas, anyone is free to enter as many (meaningful) ideas as possible anytime.</p>
+
+<p>Each project should be finished within the 1 week period, after which a jury evaluates the successfully completed ones, rates them and hands out awards for the selected ones.</p>
+
+<h2>Inspiration</h2>
+
+<ul>
+    <li>Project Ideas 2014</li>
+    <li><a href="https://hackweek.suse.com/">https://hackweek.suse.com/</a></li>
+</ul>
+
+{% endblock %}

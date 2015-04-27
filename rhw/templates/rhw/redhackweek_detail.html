@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ redhackweek.title }}{% endblock %}
+
+{% block content %}
+
+<h1>
+    {% if request.user.is_superuser %}
+    <a href="{% url 'rhw-edit' redhackweek.slug %}" title="edit"><i class="glyphicon glyphicon-edit"></i></a>
+    {% endif %}
+    {{ redhackweek.title }}
+</h1>
+
+<ul class="properties rhw-properties">
+    <li><strong>{{ redhackweek.start }} &ndash; {{ redhackweek.end }}</strong></li>
+    <li><strong>Status: {{ redhackweek.get_status }}</strong></li>
+</ul>
+
+{{ redhackweek.text|safe }}
+
+{% if redhackweek.status == redhackweek.STATUS_IDEAS %}
+
+    <h2>
+        Nominated Ideas
+        <a href="{% url 'rhw-nominate' redhackweek.slug %}"><i class="glyphicon glyphicon-plus"></i></a>
+    </h2>
+
+    {% for idea in redhackweek.ideas.all %}
+    {% include 'rhw/idea_preview.html' %}
+    {% endfor %}
+
+{% else %}
+
+    {% if redhackweek.projects.count > 0 %}
+    <h2>
+        {% if redhackweek.status <= redhackweek.STATUS_HACKING %}
+            Selected Projects
+        {% else %}
+            Realized Projects
+        {% endif %}
+    </h2>
+
+    {% for project in redhackweek.projects.all %}
+    {% include 'rhw/project_preview.html' %}
+    {% endfor %}
+    {% endif %}
+
+    <h2>
+        Unselected Ideas
+    </h2>
+
+    {% for idea in redhackweek.unselected_ideas.all %}
+    {% include 'rhw/idea_preview.html' %}
+    {% endfor %}
+
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,34 @@
+body {
+    font-size: 16px;
+}
+
+.box {
+    display: block;
+    margin: 8px 0;
+    padding: 8px;
+    background: linear-gradient(#eee, #f6f6f6);
+    border: thin solid #ccc;
+    border-radius: 8px;
+    color: inherit;
+}
+
+.box:hover {
+    display: block;
+    padding: 8px;
+    background: linear-gradient(#d6d6d6, #eee);
+    border: thin solid #bbb;
+    border-radius: 8px;
+    text-decoration: none;
+    color: inherit;
+}
+
+.project-preview {
+    background: linear-gradient(#efe, #f6fff6);
+    border: medium solid #cfc;
+}
+
+.project-preview:hover {
+    background: linear-gradient(#d6ddd6, #efe);
+    border: medium solid #beb;
+}
+
