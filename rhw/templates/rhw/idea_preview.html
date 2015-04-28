@@ -23,12 +23,18 @@
                 <a href="{% url 'interested' slug=idea.slug op='+' %}?back={{ request.path }}" title="add me to the list"><i class="glyphicon glyphicon-plus"></i></a>
             {% endif %}
         </li>
-        {% if not redhackweek and idea.redhackweeks.count %}
+        {% if not redhackweek and idea.redhackweeks.count or idea.redhackweeks.count > 1 %}
         <li>
             Nominated in
             {% for rhw in idea.redhackweeks.all %}
                 <a href="{{ rhw.get_absolute_url }}">{{ rhw.title }}</a>{% if not forloop.last %},{% endif %}
             {% endfor %}
+        </li>
+        {% endif %}
+        {% if idea.project %}
+        <li>
+            Implemented in <a href="{{ idea.project.rhw.get_absolute_url }}">{{ idea.project.rhw.title }}</a>
+            as <a href="{{ idea.project.get_absolute_url }}">{{ idea.project.title }}</a>
         </li>
         {% endif %}
     </ul>

@@ -45,6 +45,7 @@
     {% endfor %}
     {% endif %}
 
+    {% if redhackweek.unselected_ideas.count %}
     <h2>
         Unselected Ideas
     </h2>
@@ -52,6 +53,7 @@
     {% for idea in redhackweek.unselected_ideas.all %}
     {% include 'rhw/idea_preview.html' %}
     {% endfor %}
+    {% endif %}
 
 {% endif %}
 
