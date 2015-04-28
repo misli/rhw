@@ -159,3 +159,11 @@ LOGGING = {
 CKEDITOR_UPLOAD_PATH = 'uploads/'
 CKEDITOR_JQUERY_URL = '/static/js/jquery.min.js'
 
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'height': 400,
+        'width': '100%',
+    },
+}
+

@@ -6,7 +6,7 @@
 
 {% block content %}
 
-<h1>
+<h1 class="col-md-offset-2">
     {% if idea %}Edit idea {{ idea.title }}{% else %}Create new project idea{% if redhackweek %} for {{ redhackweek.title }}{% endif %} {% endif %}
 </h1>
 
@@ -19,7 +19,7 @@
     {% for item in form %}
     <div class='form-group'>
         <label for="{{ item.id_for_label }}" class="control-label col-md-2">{{ item.label }}:</label>
-        <div class="col-md-6{% if item.errors %} alert alert-danger{% endif %}">
+        <div class="col-md-8{% if item.errors %} alert alert-danger{% endif %}">
             {% for error in item.errors %}
                 <div>{{ error }}</div>
             {% endfor %}
@@ -31,7 +31,7 @@
     </div>
     {% endfor %}
     <div class='form-group'>
-        <div class='col-md-10 col-md-offset-2'>
+        <div class='col-md-8 col-md-offset-2'>
             <input class="btn btn-primary" type="submit" value="{% if idea %}Save{% else %}Create{% endif %}" />
         </div>
     </div>
