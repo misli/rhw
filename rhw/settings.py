@@ -157,5 +157,5 @@ LOGGING = {
 }
 
 CKEDITOR_UPLOAD_PATH = 'uploads/'
-CKEDITOR_JQUERY_URL = '//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js'
+CKEDITOR_JQUERY_URL = '/static/js/jquery.min.js'
 
