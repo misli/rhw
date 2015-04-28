@@ -259,10 +259,11 @@ class ProjectEditView(UpdateView):
 def member_vote(request, slug, op):
     project = get_object_or_404(Project, slug=slug, rhw__status__lte=RedHackWeek.STATUS_VOTING)
     if project.rhw.status == RedHackWeek.STATUS_VOTING:
-        if op == '+':
-            project.votes.add(request.user)
-        else:
-            project.votes.remove(request.user)
+        if request.user not in project.members.all():
+            if op == '+':
+                project.votes.add(request.user)
+            else:
+                project.votes.remove(request.user)
     else:
         if op == '+':
             project.members.add(request.user)
