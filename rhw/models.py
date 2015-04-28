@@ -60,7 +60,7 @@ class RedHackWeek(models.Model):
 
     @property
     def unselected_ideas(self):
-        return self.ideas.filter(project=None)
+        return self.ideas.exclude(project__rhw=self)
 
 
 @python_2_unicode_compatible
