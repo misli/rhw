@@ -29,7 +29,7 @@ except IOError:
             'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)')
         f.write(SECRET_KEY)
 
-ALLOWED_HOSTS = [os.environ.get('DOMAIN', '*')]
+ALLOWED_HOSTS = ['rhw.jakubdornak.cz', 'red-hack-week.usersys.redhat.com']
 
 ADMINS = (
     ('Jakub Dorňák', 'jdornak@redhat.com'),
