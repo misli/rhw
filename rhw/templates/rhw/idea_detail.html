@@ -13,7 +13,7 @@
 
 <ul class="idea-properties">
     <li>
-        author{% if idea.authors.count > 1 %}s{% endif %}:
+        Author{% if idea.authors.count > 1 %}s{% endif %}:
         {% for author in idea.authors.all %}
             {{ author.get_username }}{% if not forloop.last %},{% endif %}
         {% endfor %}
