@@ -8,7 +8,7 @@ from django.utils.encoding import python_2_unicode_compatible
 @python_2_unicode_compatible
 class Idea(models.Model):
     title       = models.CharField(max_length=100, unique=True)
-    slug        = models.SlugField(unique=True)
+    slug        = models.CharField(max_length=100, unique=True)
     text        = RichTextField(blank=True)
     created     = models.DateField()
     authors     = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='ideas')
@@ -38,8 +38,8 @@ class RedHackWeek(models.Model):
         STATUS_CLOSED:  'closed',
     }
 
-    title   = models.CharField(max_length=100)
-    slug    = models.SlugField(unique=True)
+    title   = models.CharField(max_length=100, unique=True)
+    slug    = models.CharField(max_length=100, unique=True)
     text    = RichTextField(blank=True)
     start   = models.DateField()
     end     = models.DateField()
@@ -68,7 +68,7 @@ class Project(models.Model):
     idea    = models.OneToOneField(Idea, related_name='project')
     rhw     = models.ForeignKey(RedHackWeek, related_name='projects')
     title   = models.CharField(max_length=100, unique=True)
-    slug    = models.SlugField(unique=True)
+    slug    = models.CharField(max_length=100, unique=True)
     text    = RichTextField(blank=True)
     members = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='projects', blank=True)
     votes   = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='votes', blank=True)

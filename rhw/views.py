@@ -1,7 +1,6 @@
 from datetime import date
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.http import is_safe_url
-from django.utils.text import slugify
 from django.views.generic import TemplateView, ListView, DetailView, UpdateView, FormView, CreateView
 
 from .forms import *
@@ -105,7 +104,6 @@ class RhwNominateNewView(CreateView):
     def form_valid(self, form):
         idea = form.save(False)
         idea.created = date.today()
-        idea.slug = slugify(idea.title)
         idea.save()
         idea.authors.add(self.request.user)
         self.rhw.ideas.add(idea)
