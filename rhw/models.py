@@ -44,7 +44,7 @@ class RedHackWeek(models.Model):
     start   = models.DateField()
     end     = models.DateField()
     ideas   = models.ManyToManyField(Idea, blank=True, related_name='redhackweeks')
-    status  = models.IntegerField(max_length=10, choices=STATUS_CHOICES.items(), default=STATUS_IDEAS)
+    status  = models.IntegerField(choices=STATUS_CHOICES.items(), default=STATUS_IDEAS)
 
     class Meta:
         ordering = ('-start',)
