@@ -1,0 +1,8 @@
+memcached
+policycoreutils-python-utils
+python3
+python3-django
+python3-django-ckeditor
+python3-memcached
+python3-mod_wsgi
+sendmail
