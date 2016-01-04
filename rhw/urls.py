@@ -33,6 +33,6 @@ urlpatterns = patterns('',
     }, name='password_reset'),
     url(r'^auth/',      include('django.contrib.auth.urls')),
     url(r'^admin/',     include(admin.site.urls)),
-    url(r'^ckeditor/',  include('ckeditor.urls')),
+    url(r'^ckeditor/',  include('ckeditor_uploader.urls')),
 )
 
