@@ -25,7 +25,7 @@ setup(
     },
     scripts      = ['bin/rhw-manage'],
     data_files   = [
-        ('/etc/bash_completion.d', ['conf/bash_completion.d/rhw.bash']),
+        ('/usr/share/bash-completion/completions', ['conf/bash_completion/rhw-manage']),
         ('/etc/httpd/conf.d', ['conf/httpd/rhw.conf']),
         ('/var/lib/rhw/data', []),
         ('/var/lib/rhw/htdocs', ['rhw/wsgi.py']),
